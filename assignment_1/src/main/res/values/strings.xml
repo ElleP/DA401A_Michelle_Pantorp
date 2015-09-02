@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Quote App</string>
+    <string name="action_settings">Settings</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="quote_heading">Quote of the day</string>
+    <string name="get_your_quote">Press to get your quote of the day!</string>
+    <string name="get_quote_button">GET QUOTE</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string-array name="quote_array">
+        <item>\"All of us, at certain moments of our lives, need to take advice and to receive help from other people.\"</item>
+        <item>\"Some cause happiness wherever they go; others whenever they go.\"</item>
+        <item>\"It\'s one of the greatest gifts you can give yourself, to forgive. Forgive everybody.\"</item>
+    </string-array>
+</resources>

@@ -1,0 +1,39 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.elle.assignment_1.ShowQuoteFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/quote_heading_id"
+        android:text="@string/quote_heading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:paddingTop="50dp"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/current_date"
+        android:gravity="center_horizontal"
+        android:textStyle="italic"
+        android:paddingTop="75dp"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="0dp" />
+    <TextView
+        android:id="@+id/quote_text_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@array/quote_array"
+        android:paddingTop="145dp"
+        android:gravity="center_horizontal"
+        android:textStyle="italic"
+        android:textSize="19dp"
+        android:textColor="#bc5e5e5e"
+        android:paddingLeft="70dp"
+        android:paddingRight="70dp" />
+
+</FrameLayout>

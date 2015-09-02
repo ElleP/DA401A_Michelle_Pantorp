@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">DAGENS CITAT</string>
+    <string name="action_settings">Inställningar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="quote_heading">DAGENS CITAT ÄR:</string>
+    <string name="get_your_quote">Klicka för att få dagens citat!</string>
+    <string name="get_quote_button">CITAT</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string-array name="quote_array">
+        <item>\"Det måste vara helt okej att göra fel, att misslyckas, bara man drar några vettiga slutsatser av det.\"</item>
+        <item>\"Den största trösten i stunder av sorg och det största hotet i stunder av lycka: Det går över.\"</item>
+        <item>\"Respektera dig själv och andra kommer att respektera dig.\"</item>
+    </string-array>
+</resources>
