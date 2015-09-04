@@ -47,8 +47,11 @@ private String[] quoteArray;
         //Jag tycker man skall deklarera en static variabel i Helpers samt tilldela den ett
         //värde i onCreate i MainActivity, alternativet är att ha en referens till Context i Helpers
 
-        String [] quoteArray = getResources().getStringArray(R.array.quote_array);
-        String randomQuote = Helpers.getQuote(quoteArray);
+        //Testade bygga om funktionen lite så att det finns en statisk variabel i Helpers och att getResources hämtar arrayn i MainActivity.
+        // Är det mer rätt?
+
+        //String [] quoteArray = getResources().getStringArray(R.array.quote_array);
+        String randomQuote = Helpers.getQuote();
         TextView t = (TextView) v.findViewById(R.id.quote_text_id);
         t.setText(randomQuote);
 

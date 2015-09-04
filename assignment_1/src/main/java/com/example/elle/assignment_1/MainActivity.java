@@ -17,9 +17,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.i("MainActivity", "In onCreate");
+
+        Helpers.quoteArray = getResources().getStringArray(R.array.quote_array);
+
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.add(R.id.main_container, new QuoteFragment());
+        ft.replace(R.id.main_container, new QuoteFragment());
         ft.commit();
     }
 
