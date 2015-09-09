@@ -1,29 +1,29 @@
-package com.example.elle.assignment_1;
+package com.example.elle.assignment_2;
 
-//import android.app.FragmentManager;
-//import android.app.FragmentTransaction;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
+
+    //public static
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i("MovieFragment", "inOnCreate");
         setContentView(R.layout.activity_main);
-        Log.i("MainActivity", "In onCreate");
 
-        Helpers.quoteArray = getResources().getStringArray(R.array.quote_array);
-
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.add(R.id.main_container, new QuoteFragment());
-        ft.commit();
+        if(savedInstanceState == null){
+            getFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.main_container, new MovieFragment())
+                    .commit();
+        }
     }
 
     @Override
@@ -57,6 +57,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() > 0 ){
+            getFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -77,6 +86,4 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
 }
