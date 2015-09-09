@@ -16,26 +16,33 @@
         android:layout_height="wrap_content"
         android:background="#EC7703"
         android:orientation="vertical"
-        android:layout_marginTop="151dp"
+        android:layout_marginTop="149dp"
+        android:paddingLeft="10dp"
+        android:paddingBottom="5dp"
         android:backgroundTint="#91000000">
 
         <TextView android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
+            android:paddingTop="5dp"
             android:id="@+id/movie_title"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:textSize="16dp"
+            android:textStyle="bold"/>
+
 
         <TextView android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/movie_year"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textStyle="italic"/>
 
     </LinearLayout>
 
     <TextView android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:layout_marginTop="210dp"
+        android:padding="10dp"
+        android:layout_marginTop="200dp"
         android:id="@+id/movie_overview"/>
 
 </RelativeLayout>
