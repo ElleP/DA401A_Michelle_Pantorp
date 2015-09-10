@@ -52,6 +52,7 @@ public class MovieFragment extends Fragment {
         GridView gridview = (GridView) view.findViewById(R.id.movie_list_view);
         gridview.setAdapter(new MovieAdapter(mMoviesList, getActivity().getLayoutInflater()));
 
+        //Sätter en onClick på varje item i gridviewn
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override

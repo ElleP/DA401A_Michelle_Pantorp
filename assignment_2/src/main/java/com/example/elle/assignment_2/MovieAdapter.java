@@ -16,9 +16,11 @@ import java.util.List;
 
 public class MovieAdapter extends BaseAdapter {
 
+    //Proporties
     List<Movie> mMovieList;
     LayoutInflater mLayoutInflater;
 
+    //Konstruktorn
     public MovieAdapter(List<Movie> mMovieList, LayoutInflater mLayoutInflater) {
         this.mMovieList = mMovieList;
         this.mLayoutInflater = mLayoutInflater;
@@ -26,16 +28,19 @@ public class MovieAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+
         return mMovieList.size();
     }
 
     @Override
     public Object getItem(int position) {
+
         return mMovieList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
+
         return 0;
     }
 
