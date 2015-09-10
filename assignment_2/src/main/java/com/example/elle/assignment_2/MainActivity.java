@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i("MovieFragment", "inOnCreate");
         setContentView(R.layout.activity_main);
 
+        //Öppnar nytt fragment som innehåller vyn med alla filmer
         if(savedInstanceState == null){
             getFragmentManager()
                     .beginTransaction()

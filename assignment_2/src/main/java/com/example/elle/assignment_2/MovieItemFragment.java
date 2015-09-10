@@ -17,29 +17,31 @@ import java.util.ArrayList;
  */
 
 public class MovieItemFragment extends Fragment {
-    private ArrayList<Movie> mMovieList = new ArrayList<Movie>();
 
     public MovieItemFragment() {
         // Required empty public constructor
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
-
-        Bundle movie = getArguments();
 
         Log.i("MovieItemFragment", "inOnCreateView");
+
+        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_movie_item, container, false);
+
+        //Hämtar bundeln som skickats från tidigare fragment
+        Bundle movie = getArguments();
+
+        //Hämtar ut information från bundeln som tilldelas view-objekt
+        ImageView fanartImageView = (ImageView) view.findViewById((R.id.movie_fanart));
+        fanartImageView.setImageResource(movie.getInt("movie_fanart"));
 
         TextView titleTextView = (TextView) view.findViewById(R.id.movie_title);
         titleTextView.setText(movie.getString("movie_title"));
@@ -49,9 +51,6 @@ public class MovieItemFragment extends Fragment {
 
         TextView overviewTextView = (TextView) view.findViewById(R.id.movie_overview);
         overviewTextView.setText(movie.getString("movie_overview"));
-
-        ImageView fanartImageView = (ImageView) view.findViewById((R.id.movie_fanart));
-        fanartImageView.setImageResource(movie.getInt("movie_fanart"));
 
         return view;
 

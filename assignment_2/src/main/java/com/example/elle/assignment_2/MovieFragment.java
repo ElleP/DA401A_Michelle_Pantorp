@@ -71,6 +71,7 @@ public class MovieFragment extends Fragment {
                 Fragment toMovieItemFragment = new MovieItemFragment();
                 toMovieItemFragment.setArguments(args);
 
+                //Replacar nuvarande fragment med fragment för en film. Fragmentet läggs även till backStack så bakåtknappen ska fungera.
                 getActivity()
                         .getFragmentManager()
                         .beginTransaction()
