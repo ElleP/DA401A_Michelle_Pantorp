@@ -12,10 +12,10 @@ import android.widget.GridView;
 
 import java.util.ArrayList;
 
-
 /**
- * A simple {@link Fragment} subclass.
+ * Created by Elle on 2015-09-08.
  */
+
 public class MovieFragment extends Fragment {
 
     ArrayList<Movie> mMoviesList = new ArrayList<>();

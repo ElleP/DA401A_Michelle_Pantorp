@@ -13,8 +13,9 @@ import java.util.ArrayList;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * Created by Elle on 2015-09-08.
  */
+
 public class MovieItemFragment extends Fragment {
     private ArrayList<Movie> mMovieList = new ArrayList<Movie>();
 
@@ -39,7 +40,6 @@ public class MovieItemFragment extends Fragment {
 
         Log.i("MovieItemFragment", "inOnCreateView");
         View view = inflater.inflate(R.layout.fragment_movie_item, container, false);
-
 
         TextView titleTextView = (TextView) view.findViewById(R.id.movie_title);
         titleTextView.setText(movie.getString("movie_title"));

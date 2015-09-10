@@ -6,11 +6,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import java.util.ArrayList;
+/**
+ * Created by Elle on 2015-09-08.
+ */
 
 public class MainActivity extends AppCompatActivity {
-
-    //public static
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i("MainActivity", "In onStop");
     }
 
+    //Override för att addToBackStack skulle fungera
     @Override
     public void onBackPressed() {
         if (getFragmentManager().getBackStackEntryCount() > 0 ){

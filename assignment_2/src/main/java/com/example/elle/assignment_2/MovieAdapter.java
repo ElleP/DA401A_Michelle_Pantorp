@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * Created by Elle on 2015-09-08.
  */
+
 public class MovieAdapter extends BaseAdapter {
 
     List<Movie> mMovieList;
@@ -46,8 +47,6 @@ public class MovieAdapter extends BaseAdapter {
 
         Movie movie = (Movie) getItem(position);
 
-        //Get from movie_item
-
         ImageView posterImageView = (ImageView) convertView.findViewById(R.id.movie_poster);
         posterImageView.setImageResource(movie.poster);
 
@@ -58,9 +57,5 @@ public class MovieAdapter extends BaseAdapter {
         YearTextView.setText(movie.year);
 
         return convertView;
-
-
     }
-
-
 }
