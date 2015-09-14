@@ -8,9 +8,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:numColumns="2"
-        android:verticalSpacing="2dp"
-        android:horizontalSpacing="2dp"
+        android:verticalSpacing="4dp"
+        android:horizontalSpacing="4dp"
         android:stretchMode="columnWidth"
+        android:padding="1dp"
         android:gravity="bottom"/>
 
 </LinearLayout>
