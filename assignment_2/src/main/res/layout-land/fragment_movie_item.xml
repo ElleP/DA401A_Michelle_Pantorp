@@ -13,39 +13,38 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="220dp"
             android:id="@+id/movie_fanart"
             android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="68dp"
             android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:paddingBottom="5dp">
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp">
 
             <TextView android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="5dp"
                 android:id="@+id/movie_title"
                 android:textColor="@color/black"
                 android:textAllCaps="true"
-                android:textSize="16dp"
-                android:textStyle="bold"/>
-
+                android:textSize="16dp" />
 
             <TextView android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/movie_year"
                 android:textColor="@color/black"
-                android:textStyle="italic"/>
+                android:textSize="12dp"/>
 
         </LinearLayout>
 
         <TextView android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:id="@+id/movie_overview"/>
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:id="@+id/movie_overview"
+            android:paddingBottom="16dp"/>
 
     </LinearLayout>
 </ScrollView>
