@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,6 +32,7 @@ public class QuoteFragment extends Fragment implements View.OnClickListener{
 
     ArrayList<String> mQuote = new ArrayList<>();
     QouteAdapter mAdapter;
+    ProgressBar mProgressbar;
 
     public QuoteFragment() {
         // Required empty public constructor
@@ -44,7 +47,7 @@ public class QuoteFragment extends Fragment implements View.OnClickListener{
 
         View v = inflater.inflate(R.layout.fragment_quote, container, false);
 
-
+        mProgressbar = (ProgressBar) v.findViewById(R.id.progress_bar);
 
         ListView listview = (ListView) v.findViewById(R.id.quote_list);
         mAdapter = new QouteAdapter(mQuote, getActivity().getLayoutInflater());
@@ -79,6 +82,12 @@ public class QuoteFragment extends Fragment implements View.OnClickListener{
 
     private class DownloadQuote extends AsyncTask<URL, Void, String>{
 
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mProgressbar.setVisibility(View.VISIBLE);
+        }
+
 
         @Override
         protected String doInBackground(URL... params) {
@@ -109,6 +118,7 @@ public class QuoteFragment extends Fragment implements View.OnClickListener{
 
         @Override
         protected void onPostExecute(String quote) {
+            mProgressbar.setVisibility(View.GONE);
             Log.i("doInBackground", "inOnPostExecute");
             mQuote.add(quote);
             Log.i("doInBackground", mQuote.get(0) + quote);

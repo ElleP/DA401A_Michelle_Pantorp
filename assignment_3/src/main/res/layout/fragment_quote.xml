@@ -3,10 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ProgressBar
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_alignParentTop="true"
+        android:indeterminate="true"
+        android:id="@+id/progress_bar"
+        android:visibility="gone"
+        android:background="#ff9900"/>
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/quote_list"/>
+        android:id="@+id/quote_list"
+        android:divider="@null"/>
 
 
 

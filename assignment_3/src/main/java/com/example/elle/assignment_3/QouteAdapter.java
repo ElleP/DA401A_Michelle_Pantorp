@@ -1,11 +1,13 @@
 package com.example.elle.assignment_3;
 
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -42,7 +44,8 @@ public class QouteAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = mLayoutInflater.inflate(R.layout.quote_item, parent, false);
         Log.i("Adapter", "inOnQuoteAdapter");
-        String quote = mQuote.get(0);
+        String quote = mQuote.get(position);
+
 
         TextView titleTextView = (TextView) convertView.findViewById(R.id.quote);
         titleTextView.setText(quote);
