@@ -17,15 +17,14 @@
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         android:orientation="vertical"
-        android:backgroundTint="#91000000">
+        android:backgroundTint="#91000000"
+        android:paddingLeft="16dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:id="@+id/movie_title"
             android:textColor="@color/white"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
             android:paddingTop="16dp"
             android:textSize="16sp" />
 
@@ -35,8 +34,6 @@
             android:gravity="bottom"
             android:id="@+id/movie_year"
             android:textColor="@color/white"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
             android:textSize="12sp"/>
 
     </LinearLayout>

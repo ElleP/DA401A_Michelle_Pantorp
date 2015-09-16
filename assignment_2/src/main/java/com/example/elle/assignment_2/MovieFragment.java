@@ -20,6 +20,8 @@ public class MovieFragment extends Fragment {
 
     ArrayList<Movie> mMoviesList = new ArrayList<>();
 
+    //ProgressBar
+
     public MovieFragment() {
         // Required empty public constructor
     }
