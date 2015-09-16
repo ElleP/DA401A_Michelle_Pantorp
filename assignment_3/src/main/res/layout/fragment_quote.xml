@@ -11,7 +11,7 @@
         android:indeterminate="true"
         android:id="@+id/progress_bar"
         android:visibility="gone"
-        android:background="#ff9900"/>
+        android:layout_marginTop="1dp" />
 
     <ListView
         android:layout_width="match_parent"
@@ -19,27 +19,22 @@
         android:id="@+id/quote_list"
         android:divider="@null"/>
 
-
-
     <LinearLayout
         android:id="@+id/fab_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="72dp"
         android:layout_alignParentBottom="true"
         android:gravity="right"
         android:orientation="vertical"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp">
+        android:layout_marginRight="16dp">
 
         <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/my_fab_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             app:fabSize="normal"
             android:src="@drawable/ic_add_white_18dp"
-            app:backgroundTint="@color/my_fab_color"
-            android:layout_gravity="bottom|end"
-            android:onClick="fabClicked"/>
+            app:backgroundTint="@color/my_fab_color"/>
     </LinearLayout>
 
 </RelativeLayout>

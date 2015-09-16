@@ -1,11 +1,10 @@
 <resources>
-    <string name="app_name">assignment_3</string>
+    <string name="app_name">ZenQuoter</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <color name="my_fab_color">#000000</color>
+    <color name="my_fab_color">#FF4081</color>
 </resources>

@@ -46,11 +46,8 @@ public class QouteAdapter extends BaseAdapter {
         Log.i("Adapter", "inOnQuoteAdapter");
         String quote = mQuote.get(position);
 
-
         TextView titleTextView = (TextView) convertView.findViewById(R.id.quote);
         titleTextView.setText(quote);
-
-
 
         return convertView;
     }
