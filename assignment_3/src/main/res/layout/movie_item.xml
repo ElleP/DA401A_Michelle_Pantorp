@@ -1,0 +1,44 @@
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:id="@+id/movie_poster"
+        android:adjustViewBounds="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:background="#000000"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:backgroundTint="#91000000"
+        android:paddingLeft="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/movie_title"
+            android:textColor="@color/white"
+            android:paddingTop="16dp"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:id="@+id/movie_year"
+            android:textColor="@color/white"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

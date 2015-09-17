@@ -27,16 +27,19 @@ public class QouteAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+
         return mQuote.size();
     }
 
     @Override
     public Object getItem(int position) {
+
         return mQuote.get(position);
     }
 
     @Override
     public long getItemId(int position) {
+
         return 0;
     }
 

@@ -119,9 +119,7 @@ public class QuoteFragment extends Fragment implements View.OnClickListener{
         @Override
         protected void onPostExecute(String quote) {
             mProgressbar.setVisibility(View.GONE);
-            Log.i("doInBackground", "inOnPostExecute");
             mQuote.add(quote);
-            Log.i("doInBackground", mQuote.get(0) + quote);
             mAdapter.notifyDataSetChanged();
         }
 
