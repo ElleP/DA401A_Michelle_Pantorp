@@ -36,7 +36,6 @@ public class MovieFragment extends Fragment {
     MovieAdapter mAdapter;
     ProgressBar mProgressbar;
     Movie mMovie;
-    //ProgressBar
 
     public MovieFragment() {
         // Required empty public constructor
@@ -54,7 +53,7 @@ public class MovieFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_movie, container, false);
 
-        //mProgressbar = (ProgressBar) view.findViewById(R.id.movie_progress_bar);
+        mProgressbar = (ProgressBar) view.findViewById(R.id.movie_progress_bar);
 
         GridView gridview = (GridView) view.findViewById(R.id.movie_list_view);
         mAdapter = new MovieAdapter(mMoviesList, getActivity().getLayoutInflater());
@@ -77,7 +76,7 @@ public class MovieFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            //mProgressbar.setVisibility(View.VISIBLE);
+            mProgressbar.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -87,7 +86,7 @@ public class MovieFragment extends Fragment {
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestProperty ("Version", "2");
                 String apiKey = "492a165927bfaff86b3030454939981d4e2d94c50515e15e42f41fbf57481a44";
-                urlConnection.setRequestProperty ("Authorization", apiKey);
+                urlConnection.setRequestProperty("Authorization", apiKey);
                 try {
                     InputStream inputStream = new BufferedInputStream(urlConnection.getInputStream());
                     return createListOfMovies(inputStream);
@@ -121,10 +120,9 @@ public class MovieFragment extends Fragment {
         @Override
         protected void onPostExecute(List<Movie> movies) {
             super.onPostExecute(movies);
-            //mProgressbar.setVisibility(View.GONE);
-
             mMoviesList.addAll(movies);
             mAdapter.notifyDataSetChanged();
+            mProgressbar.setVisibility(View.GONE);
         }
     }
 }

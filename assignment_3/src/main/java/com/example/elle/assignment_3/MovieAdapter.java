@@ -29,7 +29,6 @@ public class MovieAdapter extends BaseAdapter {
     List<Movie> mMovieList;
     LayoutInflater mLayoutInflater;
     ImageView mCover;
-    ProgressBar mProgressbar;
     Bitmap mBitmap;
 
     //Konstruktorn
@@ -60,7 +59,6 @@ public class MovieAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = mLayoutInflater.inflate(R.layout.movie_item, parent, false);
         }
-        //mProgressbar = (ProgressBar) convertView.findViewById(R.id.movie_progress_bar);
 
         Movie movie = (Movie) getItem(position);
         try {
