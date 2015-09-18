@@ -54,14 +54,11 @@ public class MovieFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_movie, container, false);
 
-        mProgressbar = (ProgressBar) view.findViewById(R.id.movie_progress_bar);
+        //mProgressbar = (ProgressBar) view.findViewById(R.id.movie_progress_bar);
 
         GridView gridview = (GridView) view.findViewById(R.id.movie_list_view);
         mAdapter = new MovieAdapter(mMoviesList, getActivity().getLayoutInflater());
         gridview.setAdapter(mAdapter);
-
-        //mProgressbar = (ProgressBar) view.findViewById(R.id.movie_progress_bar);
-
 
         try{
             URL url;
@@ -80,7 +77,7 @@ public class MovieFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            mProgressbar.setVisibility(View.VISIBLE);
+            //mProgressbar.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -124,7 +121,7 @@ public class MovieFragment extends Fragment {
         @Override
         protected void onPostExecute(List<Movie> movies) {
             super.onPostExecute(movies);
-            mProgressbar.setVisibility(View.GONE);
+            //mProgressbar.setVisibility(View.GONE);
 
             mMoviesList.addAll(movies);
             mAdapter.notifyDataSetChanged();

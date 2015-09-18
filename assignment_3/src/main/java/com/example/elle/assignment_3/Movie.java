@@ -49,7 +49,6 @@ public class Movie{
             year = jsonArray.getJSONObject(i).getString("year");
             coverUrl = jsonArray.getJSONObject(i).getJSONObject("images").getJSONObject("poster").getString("thumb");
             movieList.add(new Movie(title, year, coverUrl));
-
         }
 
         return movieList;
