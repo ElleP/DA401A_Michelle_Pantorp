@@ -44,7 +44,6 @@ public class QuoteFragment extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-
         View v = inflater.inflate(R.layout.fragment_quote, container, false);
 
         mProgressbar = (ProgressBar) v.findViewById(R.id.progress_bar);
@@ -74,10 +73,6 @@ public class QuoteFragment extends Fragment implements View.OnClickListener{
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        //https://api.github.com/zen?access_token=0f892e365071c7e778a020e463d715b8ccb816f5";
-
-
-
     }
 
     private class DownloadQuote extends AsyncTask<URL, Void, String>{
@@ -87,7 +82,6 @@ public class QuoteFragment extends Fragment implements View.OnClickListener{
             super.onPreExecute();
             mProgressbar.setVisibility(View.VISIBLE);
         }
-
 
         @Override
         protected String doInBackground(URL... params) {
@@ -107,7 +101,6 @@ public class QuoteFragment extends Fragment implements View.OnClickListener{
                     return quote;
 
                 } finally {
-
                     urlConnection.disconnect();
                 }
             } catch (IOException e) {
