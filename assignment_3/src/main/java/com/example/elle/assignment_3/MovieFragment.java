@@ -15,9 +15,11 @@ import org.json.JSONException;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.FileNameMap;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -84,9 +86,10 @@ public class MovieFragment extends Fragment {
             URL url = params[0];
             try {
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setRequestProperty ("Version", "2");
+                urlConnection.setRequestProperty("Content-type", "application/json");
+                urlConnection.setRequestProperty ("trakt-api-version", "2");
                 String apiKey = "492a165927bfaff86b3030454939981d4e2d94c50515e15e42f41fbf57481a44";
-                urlConnection.setRequestProperty("Authorization", apiKey);
+                urlConnection.setRequestProperty("trakt-api-key", apiKey);
                 try {
                     InputStream inputStream = new BufferedInputStream(urlConnection.getInputStream());
                     return createListOfMovies(inputStream);
