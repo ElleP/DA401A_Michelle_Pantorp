@@ -2,6 +2,7 @@ package com.example.elle.assignment_3;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,8 +29,11 @@ public class MovieAdapter extends BaseAdapter {
     //Proporties
     List<Movie> mMovieList;
     LayoutInflater mLayoutInflater;
+    //Bitmap mBitmap;
     ImageView mCover;
-    Bitmap mBitmap;
+    TextView mTitleTextView;
+    TextView mYearTextView;
+
 
     //Konstruktorn
     public MovieAdapter(List<Movie> mMovieList, LayoutInflater mLayoutInflater) {
@@ -60,30 +64,40 @@ public class MovieAdapter extends BaseAdapter {
             convertView = mLayoutInflater.inflate(R.layout.movie_item, parent, false);
         }
 
-        Movie movie = (Movie) getItem(position);
-        try {
-            URL url;
-            url = new URL(movie.getCoverUrl());
-            downloadCoversTask dst = new downloadCoversTask();
-            mBitmap = dst.execute(url).get();
+        mCover = (ImageView) convertView.findViewById(R.id.movie_poster);
+        mTitleTextView = (TextView) convertView.findViewById(R.id.movie_title);
+        mYearTextView = (TextView) convertView.findViewById(R.id.movie_year);
 
-        } catch (MalformedURLException | InterruptedException | ExecutionException e) {
+        Movie movie = (Movie) getItem(position);
+
+        try {
+            //URL url;
+            //url = new URL(movie.getCoverUrl());
+            //downloadCoversTask dst = new downloadCoversTask(mCover);
+            //mBitmap = dst.execute(url).get();
+
+            new downloadCoversTask(mCover).execute(new URL(movie.coverUrl));
+
+        } catch (MalformedURLException e) {
             e.printStackTrace();
         }
 
 
-        mCover = (ImageView) convertView.findViewById(R.id.movie_poster);
-        TextView titleTextView = (TextView) convertView.findViewById(R.id.movie_title);
-        TextView YearTextView = (TextView) convertView.findViewById(R.id.movie_year);
 
-        titleTextView.setText(movie.getTitle());
-        YearTextView.setText(movie.getYear());
-        mCover.setImageBitmap(mBitmap);
+
+
+        mTitleTextView.setText(movie.getTitle());
+        mYearTextView.setText(movie.getYear());
+        //mCover.setImageBitmap(mBitmap);
 
         return convertView;
     }
 
     private class downloadCoversTask extends AsyncTask<URL, Void, Bitmap> {
+        //ImageView mImageView;
+
+        public downloadCoversTask(ImageView mCover) {
+        }
 
         protected Bitmap doInBackground(URL... params) {
             URL url = params[0];
@@ -101,6 +115,12 @@ public class MovieAdapter extends BaseAdapter {
                 e.printStackTrace();
             }
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            super.onPostExecute(bitmap);
+            mCover.setImageBitmap(bitmap);
         }
     }
 }

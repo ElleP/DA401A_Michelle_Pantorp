@@ -17,7 +17,7 @@ import java.util.List;
 public class Movie{
     private String year;
     private String title;
-    private String coverUrl;
+    public String coverUrl;
     private List<Movie> movieList;
 
     public Movie(){
