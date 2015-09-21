@@ -31,9 +31,6 @@ public class MovieAdapter extends BaseAdapter {
     List<Movie> mMovieList;
     LayoutInflater mLayoutInflater;
 
-    //ImageView mCover;
-    //Bitmap mBitmap;
-
     //Konstruktorn
     public MovieAdapter(List<Movie> mMovieList, LayoutInflater mLayoutInflater) {
         this.mMovieList = mMovieList;
@@ -43,16 +40,19 @@ public class MovieAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+
         return mMovieList.size();
     }
 
     @Override
     public Object getItem(int position) {
+
         return mMovieList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
+
         return 0;
     }
 
@@ -66,13 +66,11 @@ public class MovieAdapter extends BaseAdapter {
         Movie movie = (Movie) getItem(position);
 
         ImageView mCover = (ImageView) convertView.findViewById(R.id.movie_poster);
-        TextView titleTextView = (TextView) convertView.findViewById(R.id.movie_title);
-        TextView YearTextView = (TextView) convertView.findViewById(R.id.movie_year);
+        TextView mTitle = (TextView) convertView.findViewById(R.id.movie_title);
+        TextView mYear = (TextView) convertView.findViewById(R.id.movie_year);
 
-        titleTextView.setText(movie.getTitle());
-        YearTextView.setText(movie.getYear());
-
-        //mCover.setImageBitmap(mBitmap);
+        mTitle.setText(movie.getTitle());
+        mYear.setText(movie.getYear());
 
         try {
             URL url = new URL(movie.getCoverUrl());
@@ -89,6 +87,7 @@ public class MovieAdapter extends BaseAdapter {
         ImageView mCover;
 
         public downloadCoversTask(ImageView mCover) {
+
             this.mCover = mCover;
         }
 
