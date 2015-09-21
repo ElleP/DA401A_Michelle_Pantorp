@@ -3,6 +3,7 @@ package com.example.elle.assignment_3;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -28,8 +30,9 @@ public class MovieAdapter extends BaseAdapter {
     //Proporties
     List<Movie> mMovieList;
     LayoutInflater mLayoutInflater;
-    ImageView mCover;
-    Bitmap mBitmap;
+
+    //ImageView mCover;
+    //Bitmap mBitmap;
 
     //Konstruktorn
     public MovieAdapter(List<Movie> mMovieList, LayoutInflater mLayoutInflater) {
@@ -61,29 +64,33 @@ public class MovieAdapter extends BaseAdapter {
         }
 
         Movie movie = (Movie) getItem(position);
-        try {
-            URL url;
-            url = new URL(movie.getCoverUrl());
-            downloadCoversTask dst = new downloadCoversTask();
-            mBitmap = dst.execute(url).get();
 
-        } catch (MalformedURLException | InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-        }
-
-
-        mCover = (ImageView) convertView.findViewById(R.id.movie_poster);
+        ImageView mCover = (ImageView) convertView.findViewById(R.id.movie_poster);
         TextView titleTextView = (TextView) convertView.findViewById(R.id.movie_title);
         TextView YearTextView = (TextView) convertView.findViewById(R.id.movie_year);
 
         titleTextView.setText(movie.getTitle());
         YearTextView.setText(movie.getYear());
-        mCover.setImageBitmap(mBitmap);
+
+        //mCover.setImageBitmap(mBitmap);
+
+        try {
+            URL url = new URL(movie.getCoverUrl());
+            new downloadCoversTask(mCover).execute(url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
         return convertView;
     }
 
-    private class downloadCoversTask extends AsyncTask<URL, Void, Bitmap> {
+    protected class downloadCoversTask extends AsyncTask<URL, Void, Bitmap> {
+
+        ImageView mCover;
+
+        public downloadCoversTask(ImageView mCover) {
+            this.mCover = mCover;
+        }
 
         protected Bitmap doInBackground(URL... params) {
             URL url = params[0];
@@ -93,7 +100,6 @@ public class MovieAdapter extends BaseAdapter {
                 try {
                     InputStream in = new BufferedInputStream((urlConnection).getInputStream());
                     return BitmapFactory.decodeStream(in);
-
                 } finally {
                     urlConnection.disconnect();
                 }
@@ -101,6 +107,12 @@ public class MovieAdapter extends BaseAdapter {
                 e.printStackTrace();
             }
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            super.onPostExecute(bitmap);
+            mCover.setImageBitmap(bitmap);
         }
     }
 }
