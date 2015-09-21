@@ -37,7 +37,6 @@ public class MovieAdapter extends BaseAdapter {
         this.mLayoutInflater = mLayoutInflater;
     }
 
-
     @Override
     public int getCount() {
 
