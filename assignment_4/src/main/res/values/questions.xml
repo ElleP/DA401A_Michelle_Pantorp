@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<style name="AppTheme" parent="android:Theme.Material">-->
+    <array name="question_one">
+        <item>What does the cat like to drink?</item><!-- String -->
+        <item>Coffee</item><!-- String -->
+        <item>Tea</item><!-- int -->
+        <item>Milk</item><!-- int -->
+        <item>2</item><!-- int -->
+    </array>
+
+    <array name="question_two">
+        <item>Which is the best football-team in Allsvenskan?</item>
+        <item>Malmö FF</item>
+        <item>Elfsborg</item>
+        <item>IFK Göteborg</item>
+        <item>0</item>
+    </array>
+
+    <array name="question_three">
+        <item>Which color is the sun?</item>
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Yellow</item>
+        <item>2</item>
+    </array>
+
+    <array name="question_four">
+        <item>What is 1+1?</item>
+        <item>3</item>
+        <item>4</item>
+        <item>2</item>
+        <item>2</item>
+    </array>
+
+    <array name="questions">
+        <item>@array/question_one</item>
+        <item>@array/question_two</item>
+        <item>@array/question_three</item>
+        <item>@array/question_four</item>
+    </array>
+
+</resources>
