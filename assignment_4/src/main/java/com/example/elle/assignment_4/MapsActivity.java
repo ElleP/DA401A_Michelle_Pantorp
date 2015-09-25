@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.os.Vibrator;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
@@ -32,8 +33,8 @@ public class MapsActivity extends FragmentActivity implements
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private GoogleApiClient mGoogleApiClient;
     public static ArrayList<Question> mQuestionsList = new ArrayList<>();
-    public int mIndex = 0;
-    public int mIndexM = 0;
+    public int mIndex = 0; //Int index för att ha koll på vilken plats bland frågorna vi är på
+    public int mIndexM = 0; //Int index för att ha koll på vilken marker vi är på
     ArrayList<Marker> mPositions = new ArrayList<>() ;
 
 
@@ -61,6 +62,11 @@ public class MapsActivity extends FragmentActivity implements
                 .addConnectionCallbacks(this)
                 .build();
         mGoogleApiClient.connect();
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        WelcomeDialog mWelcome = new WelcomeDialog();
+        mWelcome.show(ft, "welcome");
+
     }
 
     @Override
@@ -92,14 +98,11 @@ public class MapsActivity extends FragmentActivity implements
         mUIsettings.setZoomControlsEnabled(true);
         mUIsettings.setMyLocationButtonEnabled(true);
 
-
         LatLng start = new LatLng(55.545685, 13.106897);
         LatLng challenge_one = new LatLng(55.545201, 13.107554);
         LatLng challenge_two = new LatLng(55.545375, 13.106475);
         LatLng challenge_three = new LatLng(55.545096, 13.107355);
         LatLng challenge_four = new LatLng(55.545096, 13.108342);
-
-        //Location myLocation = mMap.getMyLocation();
 
         mPositions.add(mMap.addMarker(new MarkerOptions()
                 .position(start)
@@ -107,7 +110,6 @@ public class MapsActivity extends FragmentActivity implements
                 .snippet("This is where the treasurehunt starts")
                 .visible(true)
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_home))));
-        //icon(BitmapDescriptiorFactory.fromResource(R.drawable.drawable_name);
 
         mPositions.add(mMap.addMarker(new MarkerOptions()
                 .position(challenge_one)
@@ -123,7 +125,6 @@ public class MapsActivity extends FragmentActivity implements
                 .visible(false)
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_challenge))));
 
-
         mPositions.add(mMap.addMarker(new MarkerOptions()
                 .position(challenge_three)
                 .title("Challenge")
@@ -138,14 +139,12 @@ public class MapsActivity extends FragmentActivity implements
                 .visible(false)
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_challenge))));
 
-
-        //icon(BitmapDescriptorFactory.fromResource(R.drawable.drawable_name); Get icon from
         mMap.moveCamera(CameraUpdateFactory.newLatLng(start));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(16));
 
-        //mMap.setOnMarkerClickListener(this);
-
         onUserSelectValue(false);
+
+
     }
 
     public void onUserSelectValue(boolean answer){
@@ -177,12 +176,13 @@ public class MapsActivity extends FragmentActivity implements
 
             }
         else {
+            mIndex = 0;
+            mIndexM = 0;
             mPositions.get(mIndex).setVisible(true);
             mPositions.get(mIndex+1).setVisible(false);
             mPositions.get(mIndex+2).setVisible(false);
             mPositions.get(mIndex+3).setVisible(false);
-            mIndex = 0;
-            mIndexM = 0;
+            mPositions.get(mIndex+4).setVisible(false);
         }
     }
 
@@ -209,27 +209,26 @@ public class MapsActivity extends FragmentActivity implements
         MediaPlayer mMediaPlayer = (MediaPlayer.create(this, R.raw.dest));
 
         Location mLocation = new Location("mLocation");
-        mLocation.setLongitude(mPositions.get(mIndexM).getPosition().longitude);
-        mLocation.setLatitude(mPositions.get(mIndexM).getPosition().latitude);
         Marker curMarker = mPositions.get(mIndexM);
+        mLocation.setLongitude(curMarker.getPosition().longitude);
+        mLocation.setLatitude(curMarker.getPosition().latitude);
+
         float distance = 0;
         distance = location.distanceTo(mLocation);
 
         if (distance < 10){
+            mVibrator.vibrate(100); //Om avstånd är mindre än 10 meter, vibrerar telefonen
+            mMediaPlayer.start(); //Om avstånd är mindre än 10 meter, spelas en trudelutt.
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             if (curMarker.getTitle().equals("Start")){
-                mVibrator.vibrate(100);
-                mMediaPlayer.start();
                 StartClickDialog mDialog = new StartClickDialog();
                 mDialog.show(ft, "Start Dialog");
                 curMarker.setVisible(false);
                 mPositions.get(mIndexM+1).setVisible(true);
 
             }else {
-                mVibrator.vibrate(100);
-                mMediaPlayer.start();
                 ChallengeClickDialog mDialog = new ChallengeClickDialog();
-                mDialog.show(ft, "Challenge One Dialog");
+                mDialog.show(ft, "Challenge Dialog");
 
             }
         }

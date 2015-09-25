@@ -7,16 +7,13 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.app.DialogFragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class StartClickDialog extends DialogFragment implements Dialog.OnClickListener {
-
 
     public StartClickDialog() {
         // Required empty public constructor
@@ -28,8 +25,8 @@ public class StartClickDialog extends DialogFragment implements Dialog.OnClickLi
         AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity())
                 .setTitle("Treasure Hunt")
                 .setMessage("This is where the treasure hunt starts. Good Luck!")
-                .setPositiveButton("OK, I'm up for it!", this)
-                .setNegativeButton("Noooooo", this);
+                .setPositiveButton("OK, I'm up for it!", this);
+                //.setNegativeButton("Noooooo", this);
         return dialog.create();
     }
 
@@ -40,8 +37,18 @@ public class StartClickDialog extends DialogFragment implements Dialog.OnClickLi
         switch (which){
             case Dialog.BUTTON_POSITIVE:
                 break;
-            case Dialog.BUTTON_NEGATIVE:
-                break;
+
+            //Didn't get det button_negative to work - messed up some other flow in the app. Couldn´t pinpoint the errors origin
+            /*case Dialog.BUTTON_NEGATIVE:
+                mMapsActivity.mIndexM = 0;
+                mMapsActivity.mIndex= 0;
+                mMapsActivity.mPositions.get(mMapsActivity.mIndex).setVisible(true);
+                mMapsActivity.mPositions.get(mMapsActivity.mIndex+1).setVisible(false);*/
+
+
+                //No action when this is clicked except for the dialog closes - should be som action
+
         }
+        dialog.dismiss();
     }
 }

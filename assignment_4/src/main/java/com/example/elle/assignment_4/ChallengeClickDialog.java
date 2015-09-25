@@ -11,8 +11,7 @@ import android.support.v4.app.DialogFragment;
 public class ChallengeClickDialog extends DialogFragment {
     MapsActivity mMapsActivity;
 
-
-    private static final String TAG = "Test" ;
+    private static final String TAG = "MapsActivity" ;
     public ChallengeClickDialog() {
         // Required empty public constructor
     }
@@ -36,7 +35,6 @@ public class ChallengeClickDialog extends DialogFragment {
                             mMapsActivity.mIndex++;
                             mMapsActivity.mIndexM++;
                             mMapsActivity.onUserSelectValue(true);
-
                             dialog.dismiss();
                         }else{
                             mMapsActivity.onUserSelectValue(false);

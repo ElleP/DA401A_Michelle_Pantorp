@@ -1,1 +1,1 @@
-include ':app', ':assignment_1', ':myfirstapp', ':assignment_2', ':myapplication', ':assignment_3', ':assignment_4'
+include ':app', ':assignment_1', ':myfirstapp', ':assignment_2', ':myapplication', ':assignment_3', ':assignment_4', ':lecture_maps'
