@@ -136,7 +136,7 @@ public class QuoteFragment extends Fragment {
 
         URL url = null;
         try {
-            url = new URL("https://api.github.com/zen?access_token=2a20bb2328fd26e1b502cebd042def03a08f0d7f");
+            url = new URL("https://api.github.com/zen?access_token=");
             new DownloadQuote().execute(url);
         } catch (MalformedURLException e) {
             e.printStackTrace();
