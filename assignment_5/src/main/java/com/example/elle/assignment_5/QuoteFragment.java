@@ -1,7 +1,7 @@
 package com.example.elle.assignment_5;
 
-
-import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,12 +15,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView.MultiChoiceModeListener;
+import android.widget.AbsListView;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -31,48 +30,40 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
-import static com.example.elle.assignment_5.Movie.*;
 
 /**
- * Created by Elle on 2015-09-08.
+ * A simple {@link Fragment} subclass.
  */
+public class QuoteFragment extends Fragment implements View.OnClickListener{
 
-public class MovieFragment extends Fragment {
-
-    ArrayList<Movie> mMoviesList = new ArrayList<>();
-    MovieAdapter mAdapter;
+    ArrayList<String> mQuote = new ArrayList<>();
+    QouteAdapter mAdapter;
     ProgressBar mProgressbar;
-    Movie mMovie;
 
-    public MovieFragment() {
+    public QuoteFragment() {
         // Required empty public constructor
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_movie, container, false);
 
-        mProgressbar = (ProgressBar) view.findViewById(R.id.movie_progress_bar);
+        final View v = inflater.inflate(R.layout.fragment_quote, container, false);
 
-        final GridView gridview = (GridView) view.findViewById(R.id.movie_list_view);
-        mAdapter = new MovieAdapter(mMoviesList, getActivity().getLayoutInflater());
-        gridview.setAdapter(mAdapter);
+        mProgressbar = (ProgressBar) v.findViewById(R.id.progress_bar);
 
+        final ListView listview = (ListView) v.findViewById(R.id.quote_list);
+        mAdapter = new QouteAdapter(mQuote, getActivity().getLayoutInflater());
+        listview.setAdapter(mAdapter);
 
-        gridview.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE_MODAL);
-        gridview.setMultiChoiceModeListener(new MultiChoiceModeListener() {
+        ImageView fab = (ImageView) v.findViewById(R.id.my_fab_button);
+        fab.setOnClickListener(this);
+
+        listview.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE_MODAL);
+        listview.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
 
 
             public static final String TAG = "context_action_menu";
@@ -81,7 +72,6 @@ public class MovieFragment extends Fragment {
             public boolean onCreateActionMode(ActionMode mode, Menu menu) {
                 MenuInflater inflater = mode.getMenuInflater();
                 inflater.inflate(R.menu.context_menu, menu);
-
                 return true;
             }
 
@@ -104,9 +94,9 @@ public class MovieFragment extends Fragment {
 
             private void deleteSelectedItems() {
                 Log.i(TAG, "deleteSelectedItems");
-                SparseBooleanArray checked = gridview.getCheckedItemPositions();
+                SparseBooleanArray checked = listview.getCheckedItemPositions();
                 for (int i = 0; i < checked.size(); i++) {
-                    mMoviesList.remove(i);
+                    mQuote.remove(i);
                 }
                 mAdapter.notifyDataSetChanged();
             }
@@ -118,24 +108,31 @@ public class MovieFragment extends Fragment {
 
             @Override
             public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
-                mode.setTitle(gridview.getCheckedItemCount() + " selected");
+                mode.setTitle(listview.getCheckedItemCount() + " selected");
             }
         });
 
+        return v;
+    }
 
-        try{
-            URL url;
-            url = new URL("https://api-v2launch.trakt.tv/movies/popular?extended=images");
-            downloadMoviesTask dmT = new downloadMoviesTask();
-            dmT.execute(url);
-        }catch (MalformedURLException e){
-            e.printStackTrace();
-        }
-        return view;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
 
-    private class downloadMoviesTask extends AsyncTask<URL, Void, List<Movie>> {
+    @Override
+    public void onClick(View view) {
+        URL url = null;
+        try {
+            url = new URL("https://api.github.com/zen?access_token=0f892e365071c7e778a020e463d715b8ccb816f5");
+            new DownloadQuote().execute(url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private class DownloadQuote extends AsyncTask<URL, Void, String>{
 
         @Override
         protected void onPreExecute() {
@@ -144,19 +141,22 @@ public class MovieFragment extends Fragment {
         }
 
         @Override
-        protected List<Movie> doInBackground(URL... params) {
+        protected String doInBackground(URL... params) {
+            Log.i("doInBackground", "InonDoInBackground");
             URL url = params[0];
+
             try {
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setRequestProperty("Content-type", "application/json");
-                urlConnection.setRequestProperty ("trakt-api-version", "2");
-                String apiKey = "492a165927bfaff86b3030454939981d4e2d94c50515e15e42f41fbf57481a44";
-                urlConnection.setRequestProperty("trakt-api-key", apiKey);
                 try {
+                    //Get inputStream
                     InputStream inputStream = new BufferedInputStream(urlConnection.getInputStream());
-                    return createListOfMovies(inputStream);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    //Read inputStream
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                    String quote;
+                    quote = bufferedReader.readLine();
+                    Log.i("doInBackground", quote);
+                    return quote;
+
                 } finally {
                     urlConnection.disconnect();
                 }
@@ -166,26 +166,18 @@ public class MovieFragment extends Fragment {
             return null;
         }
 
-        private List<Movie> createListOfMovies(InputStream inputStream) throws IOException, JSONException {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-            StringBuilder sb = new StringBuilder();
-
-            String line;
-            while((line = bufferedReader.readLine()) != null){
-                sb.append(line);
-            }
-            mMovie = new Movie();
-            String s = sb.toString();
-            return mMovie.fromJSON(new JSONArray(s));
-        }
-
         @Override
-        protected void onPostExecute(List<Movie> movies) {
-            super.onPostExecute(movies);
-            mMoviesList.addAll(movies);
-            mAdapter.notifyDataSetChanged();
+        protected void onPostExecute(String quote) {
             mProgressbar.setVisibility(View.GONE);
+            mQuote.add(quote);
+            mAdapter.notifyDataSetChanged();
         }
+
     }
+
+
 }
+
+
+
+
