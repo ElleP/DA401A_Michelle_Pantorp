@@ -6,7 +6,7 @@
         android:id="@+id/info_button"
         android:icon="@drawable/ic_add_circle"
         app:showAsAction="always"
-        android:title="Info">
+        android:title="Add quote">
     </item>
 
 </menu>

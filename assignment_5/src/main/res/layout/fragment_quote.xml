@@ -9,10 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="4dp"
         android:layout_alignParentTop="true"
-        android:indeterminate="true"
         android:id="@+id/progress_bar"
         android:visibility="gone"
-        android:layout_marginTop="1dp" />
+        android:layout_marginTop="0dp"
+        android:progressDrawable="@drawable/pink_progress"/>
 
     <ListView
         android:layout_width="match_parent"

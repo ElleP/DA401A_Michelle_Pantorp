@@ -6,7 +6,7 @@
         android:id="@+id/info_button"
         android:icon="@drawable/ic_info_round"
         app:showAsAction="always"
-        android:title="Info">
+        android:title="Information about">
     </item>
 
 </menu>
