@@ -1,22 +1,12 @@
 package com.example.elle.assignment_5;
 
-import android.app.FragmentManager;
-import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,13 +14,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        if (savedInstanceState == null) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.main_container, new MovieFragment())
-                    .commit();
-        }
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
         viewPager.setAdapter(new FragmentAdapter(getSupportFragmentManager()));
@@ -40,24 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        ImageView info = (ImageView) findViewById(R.id.info_button);
-        info.setImageResource(R.drawable.ic_info_round);
-        info.setOnClickListener(new View.OnClickListener() {
-
-            public static final String TAG = "clickevent";
-
-            @Override
-            public void onClick(View v) {
-                Log.i(TAG, "onclicked");
-                Context context = getApplicationContext();
-                CharSequence text = "About clicked";
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-            }
-        });
-
     }
 
     @Override
@@ -88,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
                 case 1:
                     fragment = new QuoteFragment();
                     break;
-
             }
             return fragment;
         }

@@ -3,16 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DA401A_Michelle_Pantorp.iml" filepath="$PROJECT_DIR$/DA401A_Michelle_Pantorp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/assignment_1/assignment_1.iml" filepath="$PROJECT_DIR$/assignment_1/assignment_1.iml" />
       <module fileurl="file://$PROJECT_DIR$/assignment_2/assignment_2.iml" filepath="$PROJECT_DIR$/assignment_2/assignment_2.iml" />
       <module fileurl="file://$PROJECT_DIR$/assignment_3/assignment_3.iml" filepath="$PROJECT_DIR$/assignment_3/assignment_3.iml" />
       <module fileurl="file://$PROJECT_DIR$/assignment_4/assignment_4.iml" filepath="$PROJECT_DIR$/assignment_4/assignment_4.iml" />
       <module fileurl="file://$PROJECT_DIR$/assignment_5/assignment_5.iml" filepath="$PROJECT_DIR$/assignment_5/assignment_5.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lecture_maps/lecture_maps.iml" filepath="$PROJECT_DIR$/lecture_maps/lecture_maps.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lecture_menu/lecture_menu.iml" filepath="$PROJECT_DIR$/lecture_menu/lecture_menu.iml" />
-      <module fileurl="file://$PROJECT_DIR$/myapplication/myapplication.iml" filepath="$PROJECT_DIR$/myapplication/myapplication.iml" />
-      <module fileurl="file://$PROJECT_DIR$/myfirstapp/myfirstapp.iml" filepath="$PROJECT_DIR$/myfirstapp/myfirstapp.iml" />
     </modules>
   </component>
 </project>

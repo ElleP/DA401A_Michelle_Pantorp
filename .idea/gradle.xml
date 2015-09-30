@@ -10,16 +10,11 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/assignment_1" />
             <option value="$PROJECT_DIR$/assignment_2" />
             <option value="$PROJECT_DIR$/assignment_3" />
             <option value="$PROJECT_DIR$/assignment_4" />
             <option value="$PROJECT_DIR$/assignment_5" />
-            <option value="$PROJECT_DIR$/lecture_maps" />
-            <option value="$PROJECT_DIR$/lecture_menu" />
-            <option value="$PROJECT_DIR$/myapplication" />
-            <option value="$PROJECT_DIR$/myfirstapp" />
           </set>
         </option>
       </GradleProjectSettings>

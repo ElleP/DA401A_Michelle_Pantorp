@@ -1,13 +1,9 @@
 package com.example.elle.assignment_5;
 
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.util.SparseBooleanArray;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,10 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,12 +24,13 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class QuoteFragment extends Fragment implements View.OnClickListener{
+public class QuoteFragment extends Fragment {
 
     ArrayList<String> mQuote = new ArrayList<>();
     QouteAdapter mAdapter;
@@ -44,7 +39,6 @@ public class QuoteFragment extends Fragment implements View.OnClickListener{
     public QuoteFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,12 +53,10 @@ public class QuoteFragment extends Fragment implements View.OnClickListener{
         mAdapter = new QouteAdapter(mQuote, getActivity().getLayoutInflater());
         listview.setAdapter(mAdapter);
 
-        ImageView fab = (ImageView) v.findViewById(R.id.my_fab_button);
-        fab.setOnClickListener(this);
-
         listview.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE_MODAL);
         listview.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
 
+            List<String> selectedQuotes = new ArrayList<String>();
 
             public static final String TAG = "context_action_menu";
 
@@ -77,7 +69,8 @@ public class QuoteFragment extends Fragment implements View.OnClickListener{
 
             @Override
             public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-                return false;
+                mode.setTitle(listview.getCheckedItemCount() + " selected");
+                return true;
             }
 
             @Override
@@ -94,21 +87,32 @@ public class QuoteFragment extends Fragment implements View.OnClickListener{
 
             private void deleteSelectedItems() {
                 Log.i(TAG, "deleteSelectedItems");
-                SparseBooleanArray checked = listview.getCheckedItemPositions();
-                for (int i = 0; i < checked.size(); i++) {
-                    mQuote.remove(i);
-                }
-                mAdapter.notifyDataSetChanged();
+                mQuote.removeAll(selectedQuotes);
             }
 
             @Override
             public void onDestroyActionMode(ActionMode mode) {
+                mAdapter.notifyDataSetChanged();
+                selectedQuotes.clear();
 
             }
 
             @Override
             public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
-                mode.setTitle(listview.getCheckedItemCount() + " selected");
+                if(checked) {
+                    selectItem(position);
+                } else {
+                    deselectItem(position);
+                }
+                mode.invalidate();
+            }
+
+            void selectItem(int position) {
+                selectedQuotes.add(mQuote.get(position));// + String.valueOf(position)
+            }
+
+            void deselectItem(int position) {
+                selectedQuotes.remove(mQuote.get(position)); // + String.valueOf(position)
             }
         });
 
@@ -118,19 +122,32 @@ public class QuoteFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.quote_menu, menu);
+    }
 
     @Override
-    public void onClick(View view) {
+    public boolean onOptionsItemSelected(MenuItem item) {
+
         URL url = null;
         try {
-            url = new URL("https://api.github.com/zen?access_token=0f892e365071c7e778a020e463d715b8ccb816f5");
+            url = new URL("https://api.github.com/zen?access_token=2a20bb2328fd26e1b502cebd042def03a08f0d7f");
             new DownloadQuote().execute(url);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        return super.onOptionsItemSelected(item);
     }
+
+    /*@Override
+    public void onClick(View view) {
+
+    }*/
 
     private class DownloadQuote extends AsyncTask<URL, Void, String>{
 

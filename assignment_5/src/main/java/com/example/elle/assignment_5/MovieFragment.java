@@ -1,10 +1,13 @@
 package com.example.elle.assignment_5;
 
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.SparseBooleanArray;
@@ -18,10 +21,9 @@ import android.view.ViewGroup;
 import android.widget.AbsListView.MultiChoiceModeListener;
 import android.widget.GridView;
 import android.widget.ProgressBar;
-
+import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,6 +34,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 import static com.example.elle.assignment_5.Movie.*;
 
@@ -53,9 +56,25 @@ public class MovieFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
 
+        inflater.inflate(R.menu.movies_menu, menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Context context = getContext();
+        CharSequence text = "About clicked";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -69,7 +88,6 @@ public class MovieFragment extends Fragment {
         final GridView gridview = (GridView) view.findViewById(R.id.movie_list_view);
         mAdapter = new MovieAdapter(mMoviesList, getActivity().getLayoutInflater());
         gridview.setAdapter(mAdapter);
-
 
         gridview.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE_MODAL);
         gridview.setMultiChoiceModeListener(new MultiChoiceModeListener() {
